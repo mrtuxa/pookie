@@ -17,14 +17,7 @@ fun Application.configureRouting() {
             call.respondText("Bot is online as ${jda!!.selfUser.name}")
         }
         get("/log") {
-            val content = try {
-                Files.readString(Paths.get("log*.log"))
-            } catch (ex: IOException) {
-                ex.printStackTrace()
-                "Error reading log file."
-            }
-
-            call.respondText(content, ContentType.Text.Plain)
+            call.respondText(ServerLogging.getLog(), ContentType.Text.Plain)
         }
     }
 }

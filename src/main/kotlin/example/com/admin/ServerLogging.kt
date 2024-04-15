@@ -14,7 +14,7 @@ import java.nio.file.StandardOpenOption
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-class ServerLogging : ListenerAdapter() {
+object ServerLogging : ListenerAdapter() {
     private val receivedMessages: MutableList<Message> = mutableListOf()
 
     override fun onMessageReceived(event: MessageReceivedEvent) {
@@ -28,23 +28,8 @@ class ServerLogging : ListenerAdapter() {
     }
 
     private fun logMessages(event: MessageReceivedEvent) {
-        val channel = event.guild.getTextChannelById(Main.dotenv["LOGGING_CHANNEL"])// Replace with your channel ID
+        val channel = event.guild.getTextChannelById(1229475594899558410L)// Replace with your channel ID
         val path: Path = Paths.get(("log-" + channel!!.name + LocalDate.now()).toString() + ".log")
-
-        try {
-            Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.APPEND, StandardOpenOption.CREATE).use { writer ->
-                for (message in receivedMessages.reversed()) { // Reversed so that newer messages are at the bottom
-                    val id = message.id
-                    val author = message.author.name
-                    val content = message.contentRaw
-                    val link = message.jumpUrl // Get the URL of the message
-                    writer.write("Time=${LocalDateTime.now()} ID=$id author=$author message=$content link=$link") // Write message in the desired format
-                    writer.newLine() // Add a newline after each message
-                }
-            }
-        } catch (ex: IOException) {
-            ex.printStackTrace()
-        }
     }
 
     fun getLog(): String {
@@ -52,8 +37,9 @@ class ServerLogging : ListenerAdapter() {
             val id = message.id
             val author = message.author.name
             val content = message.contentRaw
+            val created = message.timeCreated
             val link = message.jumpUrl // Get the URL of the message
-            "Time=${LocalDateTime.now()} ID=$id author=$author message=$content link=$link"
+            "Time=${created} ID=$id author=$author message=$content link=$link"
         }
         return logEntries
     }

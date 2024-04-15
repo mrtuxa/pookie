@@ -23,7 +23,7 @@ class Ready : ListenerAdapter() {
 
         event.jda.addEventListener(Ping())
         event.jda.addEventListener(SetupTicket())
-        event.jda.addEventListener(ServerLogging())
+        event.jda.addEventListener(ServerLogging)
 
     }
 }
