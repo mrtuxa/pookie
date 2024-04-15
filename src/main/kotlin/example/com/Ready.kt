@@ -1,5 +1,6 @@
 package example.com
 
+import example.com.admin.ServerLogging
 import example.com.commands.slash.Ping
 import example.com.commands.slash.SetupTicket
 
@@ -18,11 +19,11 @@ class Ready : ListenerAdapter() {
         guild!!.updateCommands().addCommands(
             Commands.slash("ping", "replies with the ping of the bot to the discord api"),
             Commands.slash("setup-ticket", "setup ticket channel")
-                .addOption(OptionType.CHANNEL, "channel", "channel of ticket creation", true)
         ).queue()
 
         event.jda.addEventListener(Ping())
         event.jda.addEventListener(SetupTicket())
+        event.jda.addEventListener(ServerLogging())
 
     }
 }

@@ -12,9 +12,10 @@ import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 
-val dotenv = Dotenv.load()
+
 
 object Main {
+    var dotenv = Dotenv.load()
     var jda : JDA? = null
 }
 
@@ -30,7 +31,7 @@ fun main() {
 
     embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
         .start(wait = true)
-    
+
 }
 
 fun Application.module() {
