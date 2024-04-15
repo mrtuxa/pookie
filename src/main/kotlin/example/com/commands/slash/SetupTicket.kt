@@ -1,6 +1,7 @@
 package example.com.commands.slash
 
 import dev.minn.jda.ktx.messages.EmbedBuilder
+import dev.minn.jda.ktx.messages.send
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
@@ -10,16 +11,21 @@ import java.awt.Color
 class SetupTicket : ListenerAdapter() {
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
         if (event.name == "setup-ticket") {
-            val channel = event.getOption("channel")!!.asString
+           val guild = event.guild
+            val channel = guild!!.getTextChannelById(event.getOption("channel")!!.asLong)
 
 
-            fun embedTicket(member: Member) {
-                val roleEmbed: EmbedBuilder = EmbedBuilder()
+
+            val ticketEmbed: EmbedBuilder = EmbedBuilder()
                     .setTitle("Ticket System")
                     .setAuthor(event.jda.selfUser.name, "website())", event.jda.selfUser.avatarUrl)
                     // .setThumbnail(event.jda.selfUser.)
                     .setColor(Color.BLACK)
-            }
+
+
+
+            channel!!.sendMessageEmbeds(ticketEmbed.build()).queue()
+            event.reply("sending embed").queue()
 
 
         }

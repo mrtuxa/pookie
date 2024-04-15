@@ -2,6 +2,7 @@ package example.com.handlers
 
 import dev.minn.jda.ktx.events.CoroutineEventListener
 import example.com.commands.slash.Ping
+import example.com.commands.slash.SetupTicket
 import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 
@@ -12,6 +13,7 @@ class EventHandler : CoroutineEventListener {
         when (event) {
             is SlashCommandInteractionEvent -> {
                 Ping()
+                SetupTicket()
             }
         }
     }

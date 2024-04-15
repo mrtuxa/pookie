@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import example.com.utils.guild
+import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.Commands
 
 class Ready : ListenerAdapter() {
@@ -14,7 +15,9 @@ class Ready : ListenerAdapter() {
 
 
         guild!!.updateCommands().addCommands(
-            Commands.slash("ping", "replies with the ping of the bot to the discord api")
+            Commands.slash("ping", "replies with the ping of the bot to the discord api"),
+            Commands.slash("setup-ticket", "setup ticket channel")
+                .addOption(OptionType.CHANNEL, "channel", "channel of ticket creation", true)
         ).queue()
 
         event.jda.addEventListener(Ping())
