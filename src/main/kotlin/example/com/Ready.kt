@@ -1,6 +1,8 @@
 package example.com
 
 import example.com.commands.slash.Ping
+import example.com.commands.slash.SetupTicket
+import example.com.handlers.EventHandler
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -21,6 +23,7 @@ class Ready : ListenerAdapter() {
         ).queue()
 
         event.jda.addEventListener(Ping())
+        event.jda.addEventListener(SetupTicket())
 
     }
 }

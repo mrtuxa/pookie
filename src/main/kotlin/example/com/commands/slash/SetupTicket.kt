@@ -22,7 +22,7 @@ class SetupTicket : ListenerAdapter() {
                     // .setThumbnail(event.jda.selfUser.)
                     .setColor(Color.BLACK)
 
-
+            println("test")
 
             channel!!.sendMessageEmbeds(ticketEmbed.build()).queue()
             event.reply("sending embed").queue()
