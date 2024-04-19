@@ -12,6 +12,8 @@ import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
+import java.awt.Desktop
+import java.net.URI
 
 
 object Main {
@@ -21,7 +23,9 @@ object Main {
 
 fun main() {
 
-
+    if(Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+        Desktop.getDesktop().browse(URI("http://127.0.0.1:8080"))
+    }
 
     jda = JDABuilder.createDefault(token)
         .enableIntents(GatewayIntent.MESSAGE_CONTENT)
@@ -32,6 +36,9 @@ fun main() {
 
     embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
         .start(wait = true)
+
+
+
 
 }
 
