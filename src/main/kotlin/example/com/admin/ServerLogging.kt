@@ -28,8 +28,7 @@ object ServerLogging : ListenerAdapter() {
     }
 
     private fun logMessages(event: MessageReceivedEvent) {
-        val channel = event.guild.getTextChannelById(1229475594899558410L)// Replace with your channel ID
-        val path: Path = Paths.get(("log-" + channel!!.name + LocalDate.now()).toString() + ".log")
+        val channel = event.guild.getTextChannelById(1229475594899558410)// Replace with your channel ID
     }
 
     fun getLog(): String {
