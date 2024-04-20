@@ -19,6 +19,7 @@ application {
 
 repositories {
     mavenCentral()
+    maven(uri("https://m2.dv8tion.net/releases"))
 }
 
 dependencies {
@@ -30,5 +31,12 @@ dependencies {
     implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
     implementation("net.dv8tion:JDA:5.0.0-beta.20")
     implementation("club.minnced:jda-ktx:0.11.0-beta.20")
+    implementation("com.sedmelluq:lavaplayer:1.3.77")
+    val doodleVersion = "0.10.0"
+    implementation ("io.nacular.doodle:core:$doodleVersion"   )
+    implementation ("io.nacular.doodle:browser:$doodleVersion")
+    implementation ("io.nacular.doodle:controls:$doodleVersion" )
+    implementation ("io.nacular.doodle:animation:$doodleVersion")
+    implementation ("io.nacular.doodle:themes:$doodleVersion"   )
 
 }
