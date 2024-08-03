@@ -8,15 +8,12 @@ class JoinVC : ListenerAdapter() {
         if (event.name == "join") {
             val member = event.member
             if (member != null && member.voiceState != null) {
-
+                event.reply("owo :3")
                 val channel = event.member!!.voiceState!!.channel!!.id
                 val guild = event.guild
                 val voiceChannel = guild!!.getVoiceChannelById(channel)
                 val manager = guild.audioManager
-
                 manager.openAudioConnection(voiceChannel)
-
-                event.reply("owo :3")
             }
         }
     }
